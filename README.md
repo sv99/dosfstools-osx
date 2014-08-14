@@ -27,7 +27,7 @@ OSX users using diskfstool? hdutil and hdiutil.
 require "formula"
 
 class Dosfstools < Formula
-  homepage ""
+  homepage "https://github.com/sv99/dosfstools-osx"
   url "https://github.com/sv99/dosfstools-osx.git"
   sha1 ""
 
