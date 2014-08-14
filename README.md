@@ -21,8 +21,8 @@ OSX users using diskfstool? hdutil and hdiutil.
 
 **Install with homebrew**
 
-    $brew creat dosfstool
-
+    $brew create https://github.com/sv99/dosfstools-osx.git
+    
 ```ruby
 
 

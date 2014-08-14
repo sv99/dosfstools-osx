@@ -59,34 +59,25 @@ install-doc:
 	install -p -m 0644 ChangeLog doc/* $(DESTDIR)/$(DOCDIR)/dosfstools
 
 install-man:
-	for MANPAGE in manpages/en/*; \
+	SECTION="8"; \
+    install -d -m 0755 $(DESTDIR)/$(MANDIR)/man$${SECTION}; \
+    for MANPAGE in manpages/en/*; \
 	do \
 		SECTION="8"; \
-		install -D -m 0644 $${MANPAGE} $(DESTDIR)/$(MANDIR)/man$${SECTION}/$$(basename $${MANPAGE}); \
+		install -m 0644 $${MANPAGE} $(DESTDIR)/$(MANDIR)/man$${SECTION}/$$(basename $${MANPAGE}); \
 	done
-
+    
 	for LANGUAGE in $(LANGUAGES); \
 	do \
-		for MANPAGE in manpages/$${LANGUAGE}/*; \
+		SECTION="8"; \
+        install -d -m 0755 $(DESTDIR)/$(MANDIR)/$${LANGUAGE}/man$${SECTION}; \
+        for MANPAGE in manpages/$${LANGUAGE}/*; \
 		do \
-			SECTION="8"; \
-			install -D -m 0644 $${MANPAGE} $(DESTDIR)/$(MANDIR)/$${LANGUAGE}/man$${SECTION}/$$(basename $${MANPAGE} .$${LANGUAGE}.$${SECTION}).$${SECTION}; \
+			install -m 0644 $${MANPAGE} $(DESTDIR)/$(MANDIR)/$${LANGUAGE}/man$${SECTION}/$$(basename $${MANPAGE} .$${LANGUAGE}.$${SECTION}).$${SECTION}; \
 		done; \
 	done
-install-symlinks: install-bin install-man
-	if [ -e $(DESTDIR)/$(SBINDIR)/fsck.fat ]; \
-	then \
-		ln -sf fsck.fat $(DESTDIR)/$(SBINDIR)/dosfsck; \
-		ln -sf fsck.fat $(DESTDIR)/$(SBINDIR)/fsck.msdos; \
-		ln -sf fsck.fat $(DESTDIR)/$(SBINDIR)/fsck.vfat; \
-		if [ -e $(DESTDIR)/$(MANDIR)/man8/fsck.fat.8 ]; \
-		then \
-			ln -sf fsck.fat.8 $(DESTDIR)/$(MANDIR)/man8/dosfsck.8; \
-			ln -sf fsck.fat.8 $(DESTDIR)/$(MANDIR)/man8/fsck.msdos.8; \
-			ln -sf fsck.fat.8 $(DESTDIR)/$(MANDIR)/man8/fsck.vfat.8; \
-		fi; \
-	fi
 
+install-symlinks: install-bin install-man
 	if [ -e $(DESTDIR)/$(SBINDIR)/mkfs.fat ]; \
 	then \
 		ln -sf mkfs.fat $(DESTDIR)/$(SBINDIR)/mkdosfs; \

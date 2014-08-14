@@ -7,18 +7,6 @@
 ## This is free software, and you are welcome to redistribute it
 ## under certain conditions; see COPYING for details.
 
-# manpages/Makefile.  Generated from Makefile.in by configure.
-
-# Package-specific substitution variables 
-package = dosfstools
-version = 3.0.26 
-tarname = dosfstools 
-distdir = $(tarname)-$(version)
-
-# Prefix-specific substitution variables 
-prefix = /usr/local
-exec_prefix = ${prefix}
-bindir = ${exec_prefix}/bin
 
 SHELL := sh -e
 
@@ -59,9 +47,3 @@ distclean: clean
 	rm -f po4a.cfg
 
 rebuild: distclean update build
-
-Makefile: Makefile.in ../config.status 
-    cd .. && ./config.status src/$@
-
-../config.status: ../configure
-    cd .. && ./config.status --recheck
